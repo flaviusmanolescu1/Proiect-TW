@@ -13,7 +13,7 @@
     --accent-soft: #dbeafe;   /* Accent deschis la hover pe card */
     --border: #e5e7eb;        /* Bordură subțire */
 
-    /* Culorile pentru etichete (badges) */
+    /* Culorile pentru etichete */
     --badge-cheltuiala: #ef4444; /* Roșu */
     --badge-decont: #f59e0b;     /* Portocaliu */
     --badge-venit: #10b981;      /* Verde */
@@ -27,7 +27,7 @@ body {
     line-height: 1.5;
 }
 
-/* 4.2. Antetul (Header) */
+/* Header */
 .app-header {
     background: var(--accent);
     color: #ffffff;
