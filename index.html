@@ -7,14 +7,12 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- Antetul aplicației -->
     <header class="app-header">
         <h1>StudentFinance</h1>
         <p>Sistem pentru gestionarea financiară a asociației studențești.</p>
         <p class="app-count">3 tranzacții, dintre care 2 active</p>
     </header>
 
-    <!-- Conținutul principal -->
     <main class="container">
         <!-- Panou 1: Formularul de adăugare -->
         <section class="panel">
@@ -36,14 +34,12 @@
             </form>
         </section>
 
-        <!-- Panou 2: Lista de carduri -->
+        <!-- Lista de carduri -->
         <section class="panel">
             <h2>Tranzacții recente</h2>
-            <!-- Marcaj pentru lista goală (necesar din Etapa 4) -->
-            <!-- <p class="empty">Nu există nicio tranzacție.</p> -->
-            
+
             <ul class="item-list">
-                <!-- Card 1: Tranzacție activă -->
+                <!-- Tranzacție activă -->
                 <li class="item-card">
                     <div>
                         <h3>Cumpărat materiale promoționale</h3>
@@ -52,7 +48,7 @@
                     <span class="status">În așteptare</span>
                 </li>
 
-                <!-- Card 2: Tranzacție finalizată (are clasa "done") -->
+                <!-- Tranzacție finalizată -->
                 <li class="item-card done">
                     <div>
                         <h3>Decont deplasare conferință</h3>
@@ -61,7 +57,7 @@
                     <span class="status">Achitat</span>
                 </li>
 
-                <!-- Card 3: Tranzacție activă -->
+                <!-- Tranzacție activă -->
                 <li class="item-card">
                     <div>
                         <h3>Încasare taxă membru</h3>
@@ -73,9 +69,10 @@
         </section>
     </main>
 
-    <!-- Subsolul aplicației -->
     <footer class="app-footer">
         <p>Proiect Tehnologii Web</p>
     </footer>
+    
+    <script src="tranzactii.js"></script>
 </body>
 </html>
