@@ -1,5 +1,5 @@
 # StudentFinance
-A web application for managing student association finances, tracking expenses, reimbursements, and incomes.
+O aplicație web pentru gestionarea financiară a unei asociații studențești, destinată urmăririi cheltuielilor, deconturilor și veniturilor.
 
 ## Data model
 | Field | Type | Notes |
