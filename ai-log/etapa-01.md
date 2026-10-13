@@ -1,7 +1,7 @@
 # Stage 1: AI log
 
 ## Tools
-- ChatGPT / Gemini
+- Gemini
 
 ## Conversations
 - Stage 1 static mockup layout (HTML structure, CSS Grid, Flexbox, focus states, dark theme variables)

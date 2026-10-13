@@ -1,0 +1,9 @@
+.container {
+    max-width: 1000px;
+    margin: 24px auto;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr; /* O singură coloană pentru Etapa 3 */
+    gap: 24px;
+    align-items: start;
+}

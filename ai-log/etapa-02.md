@@ -15,7 +15,3 @@
 ### 2. ID Generation & Data Validation
 - **Asked:** How to generate a unique ID safely and validate input fields before adding an item.
 - **Got:** A helper function using `reduce` (`Math.max(...) + 1`) and validation checks for empty titles and fixed tag values.
-
-## What I learned / what did not work
-- Understood why immutability is crucial for modern frameworks like React (comparing references instead of values).
-- Practiced array manipulation using `map`, `filter`, and `reduce` without mutating the original state array.
