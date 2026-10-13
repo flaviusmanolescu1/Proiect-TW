@@ -31,4 +31,4 @@ Plain JavaScript, no DOM. `tranzactii.js` holds the array and the functions that
 ## Status
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
-- [ ] Stage 3: Vite and React project
+- [x] Stage 3: Vite and React project
