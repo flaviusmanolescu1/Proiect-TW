@@ -1,3 +1,5 @@
+import TranzactieList from "./components/TranzactieList.jsx";
+
 const tranzactii = [
   { id: 1, titlu: "Cumpărat materiale promoționale", achitat: false, tip: "cheltuiala" },
   { id: 2, titlu: "Decont deplasare conferință", achitat: true, tip: "decont" },
@@ -20,8 +22,8 @@ export default function App() {
       <main className="container">
         <section className="panel">
           <h2>Tranzacții recente</h2>
-          {/* Afișare temporară ca text JSON (Etapa 4 va adăuga cardurile) */}
-          <pre>{JSON.stringify(tranzactii, null, 2)}</pre>
+          {/* Randarea componentei de listă */}
+          <TranzactieList tranzactii={tranzactii} />
         </section>
       </main>
 
