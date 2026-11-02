@@ -1,0 +1,9 @@
+{
+  "tranzactii": [
+    { "id": 1, "titlu": "📦 Cumpărat materiale promoționale", "achitat": false, "tip": "cheltuiala" },
+    { "id": 2, "titlu": "🎟️ Decont deplasare conferință", "achitat": true, "tip": "decont" },
+    { "id": 3, "titlu": "💳 Încasare taxă membru", "achitat": false, "tip": "venit" },
+    { "id": 4, "titlu": "🍕 Protocol Adunare Generală", "achitat": false, "tip": "cheltuiala" },
+    { "id": 5, "titlu": "👕 Print tricouri echipă", "achitat": true, "tip": "cheltuiala" }
+  ]
+}

@@ -11,6 +11,8 @@
     --accent-dark: #047857;
     --accent-soft: #d1fae5;
     --border: #e2e8f0;
+    --error-bg: #fef2f2;
+    --error-border: #fecaca;
 }
 
 body {
@@ -114,9 +116,10 @@ pre {
     padding: 24px;
     color: var(--muted);
     font-size: 0.9rem;
+    color: #08d896;
 }
 
-/* Tema sistemului (dacă nu e forțat light) */
+/* Tema sistemului (daca nu e fortat light) */
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
         --bg: #020617;
@@ -138,6 +141,8 @@ pre {
     --text: #f8fafc;
     --muted: #94a3b8;
     --border: #1e293b;
+    --error-bg: #450a0a;
+    --error-border: #7f1d1d;
 }
 
 
@@ -276,4 +281,19 @@ pre {
 
 .task-main input[type="checkbox"]:hover {
     transform: scale(1.15);
+}
+
+/* Etapa 6 */
+.info { 
+    color: var(--muted);
+    font-style: italic;
+}
+
+.error {
+    color: #ef4444;
+    background: var(--error-bg);
+    border: 1px solid var(--error-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.95rem;
 }

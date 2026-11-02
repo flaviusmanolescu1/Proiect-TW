@@ -1,20 +1,40 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TranzactieList from "./components/TranzactieList.jsx";
-
-const TRANZACTII_INITIALE = [
-  { id: 1, titlu: "Cumpărat materiale promoționale", achitat: false, tip: "cheltuiala" },
-  { id: 2, titlu: "Decont deplasare conferință", achitat: true, tip: "decont" },
-  { id: 3, titlu: "Încasare taxă membru", achitat: false, tip: "venit" }
-];
-
+import { fetchTranzactii } from "./api.js";
+import "./App.css";
 
 function temaInitiala() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 export default function App() {
-  const [tranzactii, setTranzactii] = useState(TRANZACTII_INITIALE);
+  // Stări pentru datele primite de la API
+  const [tranzactii, setTranzactii] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const [tema, setTema] = useState(temaInitiala);
+
+  useEffect(() => {
+    let ignore = false;
+
+    async function load() {
+      try {
+        const data = await fetchTranzactii();
+        if (!ignore) setTranzactii(data);
+      } catch (err) {
+        if (!ignore) setError(err.message);
+      } finally {
+        if (!ignore) setLoading(false);
+      }
+    }
+
+    load();
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   function handleToggle(id) {
     setTranzactii((prev) =>
@@ -48,19 +68,29 @@ export default function App() {
         <h1>StudentFinance</h1>
         <p>Sistem pentru gestionarea financiară a asociației studențești.</p>
         <p className="app-count">
-  <strong>{tranzactii.length}</strong> tranzacții, dintre care <strong>{active}</strong> active
-</p>
+          <strong>{tranzactii.length}</strong> tranzacții, dintre care <strong>{active}</strong> active
+        </p>
       </header>
 
       <main className="container">
         <section className="panel">
           <h2>Tranzacții recente</h2>
-          {/* Transmitem funcțiile către componenta copil */}
-          <TranzactieList 
-            tranzactii={tranzactii} 
-            onToggle={handleToggle} 
-            onDelete={handleDelete} 
-          />
+
+          {loading && <p className="info">Se încarcă tranzacțiile...</p>}
+
+          {error && (
+            <p className="error">
+              Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>
+            </p>
+          )}
+
+          {!loading && !error && (
+            <TranzactieList 
+              tranzactii={tranzactii} 
+              onToggle={handleToggle} 
+              onDelete={handleDelete} 
+            />
+          )}
         </section>
       </main>
 
