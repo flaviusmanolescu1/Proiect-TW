@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import TranzactieList from "./components/TranzactieList.jsx";
-import { fetchTranzactii } from "./api.js";
+import TranzactieForm from "./components/TranzactieForm.jsx";
+import {
+  createTranzactie,
+  deleteTranzactie,
+  fetchTranzactii,
+  updateTranzactie,
+} from "./api.js";
 import "./App.css";
 
 function temaInitiala() {
@@ -8,12 +14,14 @@ function temaInitiala() {
 }
 
 export default function App() {
-  // Stări pentru datele primite de la API
   const [tranzactii, setTranzactii] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   const [tema, setTema] = useState(temaInitiala);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = tema;
+  }, [tema]);
 
   useEffect(() => {
     let ignore = false;
@@ -36,20 +44,37 @@ export default function App() {
     };
   }, []);
 
-  function handleToggle(id) {
-    setTranzactii((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, achitat: !t.achitat } : t))
-    );
+  // Întâi serverul, apoi state-ul (eroarea urcă în formular)
+  async function handleAdd(tranzactie) {
+    const creata = await createTranzactie(tranzactie);
+    setTranzactii((prev) => [...prev, creata]);
   }
 
-  function handleDelete(id) {
-    setTranzactii((prev) => prev.filter((t) => t.id !== id));
+  async function handleToggle(id) {
+    const tranzactie = tranzactii.find((t) => t.id === id);
+    try {
+      const actualizata = await updateTranzactie(id, {
+        achitat: !tranzactie.achitat,
+      });
+      setTranzactii((prev) =>
+        prev.map((t) => (t.id === id ? actualizata : t))
+      );
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  async function handleDelete(id) {
+    try {
+      await deleteTranzactie(id);
+      setTranzactii((prev) => prev.filter((t) => t.id !== id));
+    } catch (err) {
+      setError(err.message);
+    }
   }
 
   function handleTema() {
-    const noua = tema === "dark" ? "light" : "dark";
-    setTema(noua);
-    document.documentElement.dataset.theme = noua;
+    setTema((prev) => (prev === "dark" ? "light" : "dark"));
   }
 
   const active = tranzactii.filter((t) => !t.achitat).length;
@@ -64,31 +89,41 @@ export default function App() {
         >
           {tema === "dark" ? "Mod luminos" : "Mod întunecat"}
         </button>
-        
+
         <h1>StudentFinance</h1>
         <p>Sistem pentru gestionarea financiară a asociației studențești.</p>
         <p className="app-count">
-          <strong>{tranzactii.length}</strong> tranzacții, dintre care <strong>{active}</strong> active
+          <strong>{tranzactii.length}</strong> tranzacții, dintre care{" "}
+          <strong>{active}</strong> active
         </p>
       </header>
 
       <main className="container">
         <section className="panel">
+          <h2>Adaugă tranzacție</h2>
+          <TranzactieForm onAdd={handleAdd} />
+        </section>
+
+        <section className="panel">
           <h2>Tranzacții recente</h2>
 
-          {loading && <p className="info">Se încarcă tranzacțiile...</p>}
-
-          {error && (
-            <p className="error">
-              Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>
+          {loading && (
+            <p className="info" data-testid="loading">
+              Se încarcă tranzacțiile...
             </p>
           )}
 
-          {!loading && !error && (
-            <TranzactieList 
-              tranzactii={tranzactii} 
-              onToggle={handleToggle} 
-              onDelete={handleDelete} 
+          {error && (
+            <p className="error" data-testid="error">
+              Nu am putut încărca datele: {error}. Rulează <code>npm run api</code>?
+            </p>
+          )}
+
+          {!loading && (
+            <TranzactieList
+              tranzactii={tranzactii}
+              onToggle={handleToggle}
+              onDelete={handleDelete}
             />
           )}
         </section>

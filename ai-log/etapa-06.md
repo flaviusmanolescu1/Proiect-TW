@@ -16,6 +16,6 @@
 - **Asked:** How to isolate HTTP requests and read the server URL dynamically.
 - **Got:** Created 'src/api.js' exporting fetchTranzactii() with res.ok validation and fallback to 'http://localhost:3001' via import.meta.env.VITE_API_URL. Documented variable in .env.example.
 
-### 2. Centralized Fetch & Environment Variables
+### 3. Centralized Fetch & Environment Variables
 - **Asked:** How to fetch data on component mount without state update race conditions.
 - **Got:** Implemented useEffect inside App.jsx using an internal async function load() and an ignore boolean flag for cleanup to safely set tranzactii, loading, and error states.

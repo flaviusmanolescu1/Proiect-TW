@@ -1,0 +1,6 @@
+{
+  "resource": "tranzactii",
+  "title": "titlu",
+  "done": "achitat",
+  "sample": { "tip": "cheltuiala" }
+}
