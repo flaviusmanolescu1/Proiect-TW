@@ -1,30 +1,35 @@
-const ETICHETE_TIP = {
-  cheltuiala: "💸 Cheltuială",
-  decont: "✈️ Decont",
-  venit: "💰 Venit"
-};
+import { Link } from "react-router-dom";
+import { ETICHETE_TIP } from "../constants.js";
+import styles from "./TranzactieCard.module.css";
 
 export default function TranzactieCard({ tranzactie, onToggle, onDelete }) {
   return (
     <li
-      className={tranzactie.achitat ? "item-card done" : "item-card"}
+      className={tranzactie.achitat ? `${styles.card} ${styles.done}` : styles.card}
       data-testid="item"
       data-id={tranzactie.id}
     >
-      <label className="task-main">
+      <div className={styles.main}>
         <input
           type="checkbox"
           checked={tranzactie.achitat}
           onChange={() => onToggle(tranzactie.id)}
+          aria-label={`Marchează ${tranzactie.titlu}`}
           data-testid="item-toggle"
         />
         <div>
-          <h3 data-testid="item-title">{tranzactie.titlu}</h3>
+          <Link
+            to={`/tranzactii/${tranzactie.id}`}
+            className={styles.title}
+            data-testid="item-link"
+          >
+            {tranzactie.titlu}
+          </Link>
           <span className={`badge badge-${tranzactie.tip}`}>
             {ETICHETE_TIP[tranzactie.tip] || tranzactie.tip}
           </span>
         </div>
-      </label>
+      </div>
 
       <button
         className="btn-danger"
@@ -37,4 +42,3 @@ export default function TranzactieCard({ tranzactie, onToggle, onDelete }) {
     </li>
   );
 }
-

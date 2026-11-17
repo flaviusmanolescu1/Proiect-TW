@@ -39,3 +39,7 @@ export function deleteTranzactie(id) {
     method: "DELETE",
   });
 }
+
+export function fetchTranzactie(id) {
+  return request(`/tranzactii/${id}`);
+}

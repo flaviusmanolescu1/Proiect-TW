@@ -1,4 +1,5 @@
 import TranzactieCard from "./TranzactieCard.jsx";
+import styles from "./TranzactieList.module.css";
 
 export default function TranzactieList({ tranzactii, onToggle, onDelete }) {
   if (tranzactii.length === 0) {
@@ -10,7 +11,7 @@ export default function TranzactieList({ tranzactii, onToggle, onDelete }) {
   }
 
   return (
-    <ul className="task-list">
+    <ul className={styles.list}>
       {tranzactii.map((tranzactie) => (
         <TranzactieCard
           key={tranzactie.id}

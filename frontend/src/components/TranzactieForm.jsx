@@ -1,10 +1,6 @@
 import { useState } from "react";
-
-const TIPURI = [
-  { value: "cheltuiala", label: "💸 Cheltuială" },
-  { value: "decont", label: "✈️ Decont" },
-  { value: "venit", label: "💰 Venit" },
-];
+import { TIPURI } from "../constants.js";
+import styles from "./TranzactieForm.module.css";
 
 const TITLU_MAX = 100;
 
@@ -44,7 +40,7 @@ export default function TranzactieForm({ onAdd }) {
   }
 
   return (
-    <form className="task-form" onSubmit={handleSubmit} noValidate data-testid="form">
+    <form className={styles.form} onSubmit={handleSubmit} noValidate data-testid="form">
       <label>
         Titlu tranzacție
         <input
@@ -79,7 +75,7 @@ export default function TranzactieForm({ onAdd }) {
         </p>
       )}
 
-      <button type="submit" disabled={trimite} data-testid="form-submit">
+      <button type="submit" className="btn" disabled={trimite} data-testid="form-submit">
         {trimite ? "Se salvează..." : "Adaugă tranzacția"}
       </button>
     </form>
