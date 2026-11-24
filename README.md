@@ -54,6 +54,14 @@ in the list.
 Three pages behind React Router: the list, a detail page at `/tasks/:id`,
 and an about page, plus a 404 page. Component styles moved to CSS Modules.
 
+# Stage 9: own backend
+json-server is gone. The API is an Express server in `backend/`, with REST
+routes, server side validation and CORS. Data is still kept in memory and
+resets on restart.
+# How to run
+ cd backend & npm install & npm run dev # terminal 1, port 3001
+ cd frontend & npm install 
+
 ## Status
 - [x] Stage 1: static mockup
 - [x] Stage 2: data logic in JavaScript
@@ -63,4 +71,5 @@ and an about page, plus a 404 page. Component styles moved to CSS Modules.
 - [x] Stage 6: data from a mock API
 - [X] Stage 7: form and validation
 - [x] Stage 8: routing and detail page
-- [ ] Stage 9: own backend with Express
+- [x] Stage 9: own backend with Express
+- [ ] Stage 10: MariaDB and full CRUD
